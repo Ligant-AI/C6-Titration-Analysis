@@ -136,7 +136,6 @@ export const TEXT = Object.freeze({
         'Whether the chosen working concentration is appropriate. The choice is yours, recorded with its evidence.',
     ],
     notADetermination: 'This tool does not determine saturation and does not choose the working concentration.',
-    researchUse: 'Research use only. Not qualified for GxP decision-making.',
 });
 export const OUT = Object.freeze({
     tableCaption: 'Per point, in order of concentration. Statistics are as you entered them, in the cytometer\'s arbitrary units; each statistic\'s declared identity is in its heading.',

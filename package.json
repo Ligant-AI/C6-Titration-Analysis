@@ -11,7 +11,7 @@
     "preview": "vite preview --port 4176 --strictPort"
   },
   "dependencies": {
-    "@ligant/bench-chrome": "file:vendor/ligant-bench-chrome-1.6.0.tgz"
+    "@ligant/bench-chrome": "file:vendor/ligant-bench-chrome-1.7.0.tgz"
   },
   "devDependencies": {
     "playwright": "1.63.0",

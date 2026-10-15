@@ -23,5 +23,5 @@ export function aboutHtml() {
         + '</section>'
         + `<section aria-labelledby="about-why"><h3 id="about-why">Why not a spreadsheet?</h3><ul>${TEXT.whyNot.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></section>`
         + `<section aria-labelledby="about-not"><h3 id="about-not">What it does not do</h3><p>${esc(TEXT.doesNotLead)}</p><ol>${TEXT.doesNot.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>`
-        + `<p>${esc(TEXT.notADetermination)}</p><p class="research-use">${esc(TEXT.researchUse)}</p></section>`;
+        + `<p>${esc(TEXT.notADetermination)}</p></section>`;
 }
