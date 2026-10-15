@@ -1,0 +1,1258 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://benchtools.ligant.ai/titration-analysis/schema/ligant-benchtools-c6-titration-analysis-1.0.0.schema.json",
+  "title": "Ligant Bench Tools Titration Analysis: saved record, schema 1.0.0",
+  "description": "The saved record of one analysis made with Ligant Bench Tools Titration Analysis, engine 1.0.0. There is one record per analysis, whatever its outcome: a result, missing declarations, values that cannot be used, a case this release does not support, or an input that could not be read. Every computed value carries its unrounded number and the text shown on the page. Flags are given by their FL-nn codes, each with its statement in words. A field that does not apply is null.",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "#/$defs/head"
+        },
+        {
+          "type": "object",
+          "required": [
+            "schema",
+            "tool",
+            "status",
+            "statements",
+            "definition",
+            "declarations",
+            "precision",
+            "points",
+            "maximum",
+            "flags",
+            "workingPoint",
+            "register",
+            "assumptions"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "schema": {},
+            "tool": {},
+            "statements": {},
+            "status": {
+              "const": "result",
+              "description": "The outcome of the analysis."
+            },
+            "definition": {
+              "type": "object",
+              "required": [
+                "relation",
+                "k",
+                "kSource",
+                "publishedForm",
+                "declaredForm",
+                "comparability"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "relation": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "k": {
+                  "const": 2
+                },
+                "kSource": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "publishedForm": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "declaredForm": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "comparability": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "description": "How the stain index is defined here: the relation, the constant k and its source, the published form, the form used with the declared statistics, and when two stain indices can be compared."
+            },
+            "declarations": {
+              "type": "object",
+              "required": [
+                "axisForm",
+                "stainingVolume",
+                "cellNumber",
+                "positiveCentral",
+                "negativeCentral",
+                "negativeSpread",
+                "positiveSpread",
+                "robustSdDefinition",
+                "entry",
+                "negativeSource",
+                "stainedAs",
+                "acquisition",
+                "matrix",
+                "minEvents",
+                "workingPoint"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "axisForm": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "stainingVolume": {
+                  "$ref": "#/$defs/quantity"
+                },
+                "cellNumber": {
+                  "$ref": "#/$defs/quantity"
+                },
+                "positiveCentral": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "negativeCentral": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "negativeSpread": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "positiveSpread": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/$defs/declChoice"
+                    },
+                    {
+                      "$ref": "#/$defs/declAnswer"
+                    }
+                  ]
+                },
+                "robustSdDefinition": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/declChoice"
+                    }
+                  ]
+                },
+                "entry": {
+                  "type": "object",
+                  "required": [
+                    "label",
+                    "value",
+                    "text"
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "value": {
+                      "enum": [
+                        "pasted",
+                        "typed"
+                      ]
+                    },
+                    "decimalSeparator": {
+                      "enum": [
+                        ".",
+                        ","
+                      ]
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "negativeSource": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "stainedAs": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "acquisition": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "matrix": {
+                  "$ref": "#/$defs/declChoice"
+                },
+                "minEvents": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/$defs/declAnswer"
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "label",
+                        "entered"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "entered": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  ]
+                },
+                "workingPoint": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/$defs/declAnswer"
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "label",
+                        "row",
+                        "text"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "label": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "row": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "text": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "description": "Every declaration made for the analysis, each with its label and its value in words."
+            },
+            "precision": {
+              "type": "string",
+              "minLength": 1,
+              "description": "How the values are rounded and shown."
+            },
+            "points": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 24,
+              "items": {
+                "$ref": "#/$defs/point"
+              },
+              "description": "One entry per point of the series, from the lowest concentration to the highest. At least 3 and at most 24 points."
+            },
+            "maximum": {
+              "type": "object",
+              "required": [
+                "status",
+                "rows",
+                "excluded",
+                "edgeFlag",
+                "note"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "computed",
+                    "withheld"
+                  ]
+                },
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "excluded": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "edgeFlag": {
+                  "enum": [
+                    "evaluated",
+                    "not-evaluated"
+                  ]
+                },
+                "note": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "description": "The point or points with the greatest stain index, any withheld points left out of the comparison, and whether the maximum-at-the-edge flag could be evaluated."
+            },
+            "flags": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/flag"
+              },
+              "description": "Every flag raised, in code order. A flag never stops the result."
+            },
+            "workingPoint": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "row",
+                    "name",
+                    "stainIndex",
+                    "fractionOfMax",
+                    "positiveSignalChange",
+                    "flags",
+                    "seriesFlags"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "row": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "The row of the working point."
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "The working point's concentration as entered, with its unit."
+                    },
+                    "stainIndex": {
+                      "$ref": "#/$defs/derived"
+                    },
+                    "fractionOfMax": {
+                      "$ref": "#/$defs/derived"
+                    },
+                    "positiveSignalChange": {
+                      "$ref": "#/$defs/derived"
+                    },
+                    "flags": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/flagCode"
+                      },
+                      "description": "The flags that name the working point, in code order."
+                    },
+                    "seriesFlags": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/$defs/flagCode"
+                      },
+                      "description": "The flags on the whole series, which name no point, in code order."
+                    }
+                  }
+                }
+              ],
+              "description": "The working concentration you recorded, with its evidence, or null if none was recorded."
+            },
+            "register": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/registerRow"
+              },
+              "description": "The constants, thresholds and conventions the analysis used, each with its value, scope, basis in words, and kind."
+            },
+            "assumptions": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "assumption",
+                  "scope",
+                  "status"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "assumption": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "scope": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "status": {
+                    "enum": [
+                      "derived",
+                      "measured",
+                      "characterised",
+                      "disclosed"
+                    ]
+                  }
+                }
+              },
+              "description": "The assumptions under which the values hold, each with its scope and kind."
+            }
+          }
+        }
+      ],
+      "description": "A result was computed."
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "#/$defs/head"
+        },
+        {
+          "type": "object",
+          "required": [
+            "schema",
+            "tool",
+            "status",
+            "statements",
+            "incomplete"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "schema": {},
+            "tool": {},
+            "statements": {},
+            "status": {
+              "const": "incomplete"
+            },
+            "incomplete": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "The declarations still to be made, in words."
+            }
+          }
+        }
+      ],
+      "description": "The analysis did not run: some declarations are still to be made."
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "#/$defs/head"
+        },
+        {
+          "type": "object",
+          "required": [
+            "schema",
+            "tool",
+            "status",
+            "statements",
+            "rejections"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "schema": {},
+            "tool": {},
+            "statements": {},
+            "status": {
+              "const": "rejected"
+            },
+            "rejections": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "rows",
+                  "message"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "message": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "description": "Why the entered values cannot be used: each message names the quantity and the reason, with the rows it concerns."
+            }
+          }
+        }
+      ],
+      "description": "The analysis did not run: some entered values cannot be used."
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "#/$defs/head"
+        },
+        {
+          "type": "object",
+          "required": [
+            "schema",
+            "tool",
+            "status",
+            "statements",
+            "notSupported"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "schema": {},
+            "tool": {},
+            "statements": {},
+            "status": {
+              "const": "unsupported"
+            },
+            "notSupported": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "What this release does not support in the case, and what to do instead."
+            }
+          }
+        }
+      ],
+      "description": "The analysis did not run: the case is not supported in this release."
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "#/$defs/head"
+        },
+        {
+          "type": "object",
+          "required": [
+            "schema",
+            "tool",
+            "status",
+            "statements",
+            "message"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "schema": {},
+            "tool": {},
+            "statements": {},
+            "status": {
+              "const": "error"
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Why the input could not be read."
+            }
+          }
+        }
+      ],
+      "description": "The analysis did not run: the input could not be read."
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Text that is not empty."
+    },
+    "display3": {
+      "type": "string",
+      "anyOf": [
+        {
+          "pattern": "^(0\\.00|-?([1-9][0-9]{2}|[1-9][0-9]\\.[0-9]|[1-9]\\.[0-9]{2}|0\\.[1-9][0-9]{2}|0\\.0[1-9][0-9]{2}|0\\.00[1-9][0-9]{2}))$"
+        },
+        {
+          "pattern": "^-?[1-9]\\.[0-9]{2} × 10⁻?[⁰¹²³⁴⁵⁶⁷⁸⁹]+$"
+        }
+      ],
+      "description": "A value shown to 3 significant figures, trailing zeros kept, with a hyphen-minus for a negative value. It is a plain decimal where the value rounded to 3 significant figures is 0 (shown 0.00), or at least 0.001 and below 1000 in size; otherwise it is a number times a power of ten, m.mm × 10ⁿ, with a superscript exponent."
+    },
+    "reasonList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "A list of reasons."
+    },
+    "derived": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "status",
+            "unrounded",
+            "display",
+            "reasons",
+            "reasonsInWords"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "const": "computed"
+            },
+            "unrounded": {
+              "type": "number",
+              "description": "The value as computed, before rounding, or null."
+            },
+            "display": {
+              "$ref": "#/$defs/display3"
+            },
+            "reasons": {
+              "type": "array",
+              "maxItems": 0,
+              "description": "The reasons the value is withheld, as short codes."
+            },
+            "reasonsInWords": {
+              "type": "array",
+              "maxItems": 0,
+              "description": "The same reasons, in words."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "status",
+            "unrounded",
+            "display",
+            "reasons",
+            "reasonsInWords"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "const": "withheld"
+            },
+            "unrounded": {
+              "type": "null",
+              "description": "The value as computed, before rounding, or null."
+            },
+            "display": {
+              "type": "null"
+            },
+            "reasons": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "The reasons the value is withheld, as short codes."
+            },
+            "reasonsInWords": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "The same reasons, in words."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "status",
+            "unrounded",
+            "display",
+            "reasons",
+            "reasonsInWords"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "const": "not-applicable"
+            },
+            "unrounded": {
+              "type": "null",
+              "description": "The value as computed, before rounding, or null."
+            },
+            "display": {
+              "type": "null"
+            },
+            "reasons": {
+              "type": "array",
+              "maxItems": 0,
+              "description": "The reasons the value is withheld, as short codes."
+            },
+            "reasonsInWords": {
+              "type": "array",
+              "maxItems": 0,
+              "description": "The same reasons, in words."
+            }
+          }
+        }
+      ],
+      "description": "A computed quantity: its unrounded value and the text shown, or the reason it is withheld, or a statement that it does not apply (the positive-signal change at the lowest concentration)."
+    },
+    "negativeSignalChange": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "status",
+            "unrounded",
+            "exact",
+            "display",
+            "decimals",
+            "reasons",
+            "reasonsInWords"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "const": "computed"
+            },
+            "unrounded": {
+              "type": "number",
+              "description": "The value as computed, before rounding, or null."
+            },
+            "exact": {
+              "type": "string",
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$",
+              "description": "The exact decimal difference of the two entered values, from which the display is rounded."
+            },
+            "display": {
+              "type": "string",
+              "pattern": "^(-?[1-9][0-9]*(\\.[0-9]+)?|-?0\\.[0-9]*[1-9][0-9]*|0(\\.0+)?)$",
+              "description": "Shown to the decimal places of the less precise of the two entered values. A value that rounds to zero is shown without a minus sign."
+            },
+            "decimals": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The number of decimal places shown."
+            },
+            "reasons": {
+              "type": "array",
+              "maxItems": 0,
+              "description": "The reasons the value is withheld, as short codes."
+            },
+            "reasonsInWords": {
+              "type": "array",
+              "maxItems": 0,
+              "description": "The same reasons, in words."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "status",
+            "unrounded",
+            "exact",
+            "display",
+            "decimals",
+            "reasons",
+            "reasonsInWords"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "const": "withheld"
+            },
+            "unrounded": {
+              "type": "null",
+              "description": "The value as computed, before rounding, or null."
+            },
+            "exact": {
+              "type": "null"
+            },
+            "display": {
+              "type": "null"
+            },
+            "decimals": {
+              "type": "null"
+            },
+            "reasons": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "The reasons the value is withheld, as short codes."
+            },
+            "reasonsInWords": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "The same reasons, in words."
+            }
+          }
+        }
+      ],
+      "description": "The change in the negative central value from the lowest concentration, or the reason it is withheld."
+    },
+    "flagCode": {
+      "type": "string",
+      "pattern": "^FL-(0[1-9]|10)$",
+      "description": "A flag code, FL-01 to FL-10. The page's flag legend says what each means."
+    },
+    "statementBlock": {
+      "type": "object",
+      "required": [
+        "scope",
+        "notADetermination",
+        "arbitraryUnits"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notADetermination": {
+          "type": "string",
+          "minLength": 1
+        },
+        "arbitraryUnits": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "Statements that hold for every record."
+    },
+    "head": {
+      "type": "object",
+      "required": [
+        "schema",
+        "tool",
+        "status",
+        "statements"
+      ],
+      "properties": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "name",
+            "version"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "const": "ligant-benchtools-c6-titration-analysis"
+            },
+            "version": {
+              "const": "1.0.0"
+            }
+          },
+          "description": "The name and version of this record format."
+        },
+        "tool": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "engineVersion"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "const": "C6"
+            },
+            "name": {
+              "const": "Titration Analysis"
+            },
+            "engineVersion": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            }
+          },
+          "description": "The tool that made the record, and its engine version. Two records with the same engine version come from the same arithmetic."
+        },
+        "statements": {
+          "$ref": "#/$defs/statementBlock",
+          "description": "Statements that hold for every record: what the tool covers, that it does not determine saturation or choose the working concentration, and that the statistics are in arbitrary units."
+        }
+      },
+      "description": "The fields every record carries."
+    },
+    "declChoice": {
+      "type": "object",
+      "required": [
+        "label",
+        "value",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "A declaration: its label, the value chosen, and the value in words."
+    },
+    "declAnswer": {
+      "type": "object",
+      "required": [
+        "label",
+        "answer"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "A declaration answered in words, such as \"not recorded\"."
+    },
+    "quantity": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "label",
+            "entered",
+            "unrounded",
+            "unit"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "entered": {
+              "type": "object",
+              "required": [
+                "value",
+                "unit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "unrounded": {
+              "type": "number"
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/declAnswer"
+        }
+      ],
+      "description": "A staining condition (the staining volume or the cell number): as entered with its unit, and its value in the base unit; or the answer \"not recorded\"."
+    },
+    "entered": {
+      "type": "object",
+      "required": [
+        "entered",
+        "unrounded"
+      ],
+      "properties": {
+        "entered": {
+          "type": "string"
+        },
+        "unrounded": {
+          "type": "number"
+        },
+        "identity": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "An entered statistic: the text as entered, its value as read, and the statistic it was declared to be."
+    },
+    "point": {
+      "type": "object",
+      "required": [
+        "row",
+        "name",
+        "concentration",
+        "statistics",
+        "stainIndex",
+        "fractionOfMax",
+        "positiveSignalChange",
+        "negativeSignalChange",
+        "flags"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "row": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The row the point was entered on."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The concentration as entered, with its unit."
+        },
+        "concentration": {
+          "type": "object",
+          "required": [
+            "entered",
+            "unrounded",
+            "unit"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "entered": {
+              "type": "object",
+              "required": [
+                "value",
+                "unit"
+              ],
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "unrounded": {
+              "type": "number"
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "description": "The concentration as entered, and its value in the base unit of the series axis."
+        },
+        "statistics": {
+          "type": "object",
+          "required": [
+            "unit",
+            "positiveCentral",
+            "negativeCentral",
+            "negativeSpread",
+            "positiveSpread",
+            "positiveEvents",
+            "negativeEvents"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "arbitrary units"
+            },
+            "positiveCentral": {
+              "$ref": "#/$defs/entered"
+            },
+            "negativeCentral": {
+              "$ref": "#/$defs/entered"
+            },
+            "negativeSpread": {
+              "$ref": "#/$defs/entered"
+            },
+            "positiveSpread": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/$defs/entered"
+                }
+              ]
+            },
+            "positiveEvents": {
+              "$ref": "#/$defs/entered"
+            },
+            "negativeEvents": {
+              "$ref": "#/$defs/entered"
+            }
+          },
+          "description": "The entered population statistics, in the cytometer's arbitrary units. The positive spread is null where it was not entered."
+        },
+        "stainIndex": {
+          "$ref": "#/$defs/derived",
+          "description": "(positive − negative) ÷ (2 × negative spread)."
+        },
+        "fractionOfMax": {
+          "$ref": "#/$defs/derived",
+          "description": "This point's stain index ÷ the greatest stain index."
+        },
+        "positiveSignalChange": {
+          "$ref": "#/$defs/derived",
+          "description": "This point's positive central value ÷ that at the next lower concentration."
+        },
+        "negativeSignalChange": {
+          "$ref": "#/$defs/negativeSignalChange",
+          "description": "This point's negative central value − that at the lowest concentration."
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/flagCode"
+          },
+          "description": "The flags that name this point, in code order. A flag about a fall in the positive signal between two points names both of them."
+        }
+      },
+      "description": "One point of the series."
+    },
+    "flag": {
+      "type": "object",
+      "required": [
+        "code",
+        "rows",
+        "statement"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/flagCode",
+          "description": "The flag's code."
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "The rows the flag counts; for a fall in the positive signal, one row per pair, the higher concentration."
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the flag states about this series, in words."
+        },
+        "withheldBeyondEdge": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "For the maximum at the edge: withheld points beyond the edge."
+        },
+        "fewerThanThreeComputed": {
+          "type": "boolean",
+          "description": "For the maximum at the edge: fewer than three points were computed."
+        },
+        "populations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "row",
+              "population"
+            ],
+            "properties": {
+              "row": {
+                "type": "string",
+                "minLength": 1
+              },
+              "population": {
+                "enum": [
+                  "positive",
+                  "negative"
+                ]
+              }
+            }
+          },
+          "description": "For too few events: each population below the declared minimum."
+        },
+        "pairs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "higher",
+              "lower"
+            ],
+            "properties": {
+              "higher": {
+                "type": "string",
+                "minLength": 1
+              },
+              "lower": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "description": "For a fall in the positive signal: each pair of neighbouring points, higher and lower concentration."
+        },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Which of the flag's cases apply."
+        }
+      },
+      "description": "A raised flag."
+    },
+    "registerRow": {
+      "type": "object",
+      "required": [
+        "item",
+        "value",
+        "scope",
+        "basis",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "derived",
+            "measured",
+            "characterised",
+            "disclosed"
+          ],
+          "description": "The kind of item: derived, measured, characterised or disclosed."
+        }
+      },
+      "description": "One constant, threshold or convention the analysis used."
+    }
+  }
+}

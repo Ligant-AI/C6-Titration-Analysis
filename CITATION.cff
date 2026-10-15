@@ -1,0 +1,17 @@
+# Citation metadata, read by GitHub ("Cite this repository") and by Zenodo.
+# At each release, set version and date-released; add the DOI once archived.
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+type: software
+title: Titration Analysis
+abstract: >-
+  The stain index at each point of an antibody titration series, with the positive and negative signals beside it, computed from the population statistics you export and the statistics you declare.
+authors:
+  - family-names: Modi
+    given-names: A.B.
+    affiliation: Ligant AI Incorporated
+version: v1.0.0
+date-released: 2026-10-15
+license: Apache-2.0
+repository-code: https://github.com/Ligant-AI/C6-Titration-Analysis
+url: https://benchtools.ligant.ai/titration-analysis/

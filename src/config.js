@@ -1,0 +1,16 @@
+export const CONFIG = Object.freeze({
+    toolTitle: 'Titration Analysis',
+    toolId: 'C6',
+    productLine: 'Ligant Bench Tools',
+    publisher: 'Ligant',
+    legalEntity: 'Ligant AI Incorporated',
+    version: '1.0.0',
+    slug: 'titration-analysis',
+    publicBase: 'https://benchtools.ligant.ai/',
+    repositoryUrl: 'https://github.com/Ligant-AI/C6-Titration-Analysis',
+    doi: null,
+    citationAuthor: 'Modi, A.B.',
+    citationYear: '2026',
+    tagline: 'The stain index at each point of an antibody titration series, with the positive and negative signals beside it, computed from the population statistics you export and the statistics you declare.',
+    disclaimer: 'Research use only. Not qualified for GxP decision-making.',
+});
