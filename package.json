@@ -1,6 +1,6 @@
 {
   "name": "c6-titration-analysis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "The stain index at each point of an antibody titration series, with the positive and negative signals beside it, computed from the population statistics you export and the statistics you declare.",
   "license": "Apache-2.0",

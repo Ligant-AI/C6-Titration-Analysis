@@ -34,4 +34,4 @@ If you use Titration Analysis in your work, please cite it. The citation is in [
 
 Apache License 2.0, see [LICENSE](LICENSE). The bundled fonts (Inter, IBM Plex Mono) are under the SIL Open Font License 1.1.
 
-Titration Analysis v1.0.0. © Ligant AI Incorporated.
+Titration Analysis v1.0.1. © Ligant AI Incorporated.

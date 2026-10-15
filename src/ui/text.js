@@ -144,7 +144,7 @@ export const OUT = Object.freeze({
         concentration: 'Concentration (as entered)', posCentral: 'Positive central value', negCentral: 'Negative central value', negSpread: 'Negative spread',
         posSpread: 'Positive spread', posCount: 'Positive events', negCount: 'Negative events', stainIndex: 'Stain index',
         fractionOfMax: 'Fraction of maximum (this ÷ maximum)', positiveSignalChange: 'Positive-signal change (this ÷ next lower)',
-        negativeSignalChange: 'Negative-signal change (this − lowest)', flags: 'Flags', engine: 'Engine version',
+        negativeSignalChange: 'Negative-signal change (this − lowest)', flags: 'Flags', seriesFlags: 'Flags on the whole series', engine: 'Engine version',
         concentrationValue: 'Concentration (as entered)', concentrationUnit: 'Concentration unit', marked: 'Marked',
     },
     withheld: 'withheld',

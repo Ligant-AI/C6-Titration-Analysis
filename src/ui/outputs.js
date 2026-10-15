@@ -109,6 +109,9 @@ export function notebookText(record) {
     lines.push(record.statements.notADetermination);
     return lines.join('\n');
 }
+export const seriesFlagCodes = (record) => record.flags
+    .filter((f) => f.rows.length === 0 && !(f.withheldBeyondEdge || []).length && !(f.pairs || []).length)
+    .map((f) => f.code).sort();
 export function csvText(record, decimal) {
     if (decimal !== '.' && decimal !== ',')
         throw new Error('csvText: a decimal convention must be declared');
@@ -129,7 +132,7 @@ export function csvText(record, decimal) {
     ];
     if (d.positiveSpread.text)
         cols.push([spreadHeading(OUT.col.posSpread, d.positiveSpread), (p) => mark((p.statistics.positiveSpread.entered ?? '').trim())]);
-    cols.push([OUT.col.posCount, (p) => mark(p.statistics.positiveEvents.entered.trim())], [OUT.col.negCount, (p) => mark(p.statistics.negativeEvents.entered.trim())], [`${OUT.col.stainIndex} ${record.definition.relation}`, (p) => derived(p.stainIndex)], [OUT.col.fractionOfMax, (p) => derived(p.fractionOfMax)], [OUT.col.positiveSignalChange, (p) => derived(p.positiveSignalChange)], [OUT.col.negativeSignalChange, (p) => (p.negativeSignalChange.status === 'computed' ? mark(p.negativeSignalChange.display) : cellText(p.negativeSignalChange))], [OUT.col.marked, (p) => [record.maximum.rows.includes(p.row) ? OUT.maximumMark : null, record.workingPoint && record.workingPoint.row === p.row ? OUT.workingMark : null].filter(Boolean).join('; ')], [OUT.col.flags, (p) => p.flags.join(' ')], [OUT.col.engine, () => record.tool.engineVersion]);
+    cols.push([OUT.col.posCount, (p) => mark(p.statistics.positiveEvents.entered.trim())], [OUT.col.negCount, (p) => mark(p.statistics.negativeEvents.entered.trim())], [`${OUT.col.stainIndex} ${record.definition.relation}`, (p) => derived(p.stainIndex)], [OUT.col.fractionOfMax, (p) => derived(p.fractionOfMax)], [OUT.col.positiveSignalChange, (p) => derived(p.positiveSignalChange)], [OUT.col.negativeSignalChange, (p) => (p.negativeSignalChange.status === 'computed' ? mark(p.negativeSignalChange.display) : cellText(p.negativeSignalChange))], [OUT.col.marked, (p) => [record.maximum.rows.includes(p.row) ? OUT.maximumMark : null, record.workingPoint && record.workingPoint.row === p.row ? OUT.workingMark : null].filter(Boolean).join('; ')], [OUT.col.flags, (p) => p.flags.join(' ')], [OUT.col.seriesFlags, () => seriesFlagCodes(record).join(' ')], [OUT.col.engine, () => record.tool.engineVersion]);
     const head = cols.map(([h]) => quote(h)).join(field);
     const rows = record.points.map((p) => cols.map(([, f]) => quote(f(p))).join(field));
     return `\uFEFF${[head, ...rows].join('\r\n')}\r\n`;

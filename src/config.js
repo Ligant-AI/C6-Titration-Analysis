@@ -4,7 +4,7 @@ export const CONFIG = Object.freeze({
     productLine: 'Ligant Bench Tools',
     publisher: 'Ligant',
     legalEntity: 'Ligant AI Incorporated',
-    version: '1.0.0',
+    version: '1.0.1',
     slug: 'titration-analysis',
     publicBase: 'https://benchtools.ligant.ai/',
     repositoryUrl: 'https://github.com/Ligant-AI/C6-Titration-Analysis',
