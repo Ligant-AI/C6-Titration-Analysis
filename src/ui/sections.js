@@ -3,6 +3,7 @@ import { TEXT } from './text.js';
 import { FLAG_LEGEND } from '../engine/flags.js';
 import { REGISTER, ASSUMPTIONS } from '../engine/constants.js';
 import { ENGINE_VERSION } from '../engine/version.js';
+import { relatedHtml } from './seo.js';
 const paras = (list) => list.map((t) => `<p>${esc(t)}</p>`).join('');
 const table = (cols, rows, cls) => `<table class="${cls}"><thead><tr>${cols.map((c) => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c, i) => (i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td>${esc(c)}</td>`)).join('')}</tr>`).join('')}</tbody></table>`;
 const NOT_ON_PAGE = ['Invariance tolerance', 'Unit-normalisation tolerance', 'Kept-in-view height'];
@@ -11,7 +12,7 @@ export function aboutHtml() {
     const legend = Object.entries(FLAG_LEGEND).map(([code, f]) => [code, f.means, f.todo]);
     return `<h2 id="about-heading">${esc(TEXT.aboutHeading)}</h2>`
         + `<section aria-labelledby="about-what"><h3 id="about-what">What it does</h3>${paras(TEXT.whatItDoes)}</section>`
-        + `<section aria-labelledby="about-how"><h3 id="about-how">How to use it</h3><ol class="steps">${TEXT.howToUse.map((t) => `<li>${esc(t)}</li>`).join('')}</ol></section>`
+        + `<section aria-labelledby="about-how"><h3 id="about-how">How to use it</h3><ol class="steps">${TEXT.howToUse.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>${relatedHtml()}</section>`
         + `<section aria-labelledby="about-works"><h3 id="about-works">How it works</h3>`
         + `<h4>${esc(TEXT.stainIndexHeading)}</h4><p>${esc(TEXT.stainIndex[0])}</p><p class="formula">${esc(TEXT.stainIndex[1])}</p>${paras(TEXT.stainIndex.slice(2))}`
         + `<h4>${esc(TEXT.signalsHeading)}</h4>${paras(TEXT.signals)}`

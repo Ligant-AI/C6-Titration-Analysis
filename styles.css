@@ -166,5 +166,12 @@ dl.derivation .formula { font-family: var(--mono); }
 .about td, .about tbody th { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; text-align: left; color: var(--text-secondary); line-height: 1.5; }
 .about tbody th { font-weight: 600; color: var(--text-primary); }
 .about table.legend tbody th { font-family: var(--mono); white-space: nowrap; }
+.about .related { margin-top: 10px; }
+.about .related a, #faq a { color: var(--text-primary); }
+
+#faq .panel-body { padding: 16px; }
+#faq h3 { font-size: 13px; margin: 0 0 6px; color: var(--text-primary); }
+#faq h3:not(:first-child) { margin-top: 14px; }
+#faq p { color: var(--text-secondary); font-size: 13px; line-height: 1.6; max-width: 110ch; }
 .about tr:last-child td, .about tr:last-child th { border-bottom: none; }
 .about .research-use { border-left: 2px solid var(--brand-amber); padding: 2px 0 2px 12px; color: var(--text-primary); }

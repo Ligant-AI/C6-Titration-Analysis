@@ -8,8 +8,8 @@
   
   <link rel="icon" id="favicon" href="data:,">
   <meta name="referrer" content="no-referrer">
-  <title>Ligant · Titration Analysis</title>
-  <meta name="description" content="The stain index at each point of an antibody titration series, with the positive and negative signals beside it, computed from the population statistics you export and the statistics you declare. A free, deterministic bench tool. Runs entirely in your browser.">
+  <title>Ligant · Titration Analysis: Stain Index Calculator</title>
+  <meta name="description" content="Free stain index calculator for flow cytometry antibody titrations. Enter your population statistics and get the stain index at every point, with the formula.">
   <link rel="canonical" href="https://benchtools.ligant.ai/titration-analysis/">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#FAF7F2">
@@ -18,10 +18,10 @@
   <meta property="og:url" content="https://benchtools.ligant.ai/titration-analysis/">
   <meta property="og:site_name" content="Ligant Bench Tools">
   <meta property="og:title" content="Ligant · Titration Analysis">
-  <meta property="og:description" content="The stain index at each point of an antibody titration series, with the positive and negative signals beside it, computed from the population statistics you export and the statistics you declare. Free, deterministic, runs entirely in your browser.">
+  <meta property="og:description" content="Free stain index calculator for flow cytometry antibody titrations. Enter your population statistics and get the stain index at every point, with the formula.">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Ligant · Titration Analysis">
-  <meta name="twitter:description" content="The stain index at each point of an antibody titration series, with the positive and negative signals beside it, computed from the population statistics you export and the statistics you declare. Free bench tool for flow cytometry.">
+  <meta name="twitter:description" content="Free stain index calculator for flow cytometry antibody titrations. Enter your population statistics and get the stain index at every point, with the formula.">
   <link rel="stylesheet" href="./src/tokens.css">
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -42,6 +42,10 @@
       <div class="panel-body"><div id="result"></div></div>
     </section>
     <section class="panel about" id="about" aria-labelledby="about-heading"></section>
+    <section class="panel" id="faq" aria-labelledby="faq-heading">
+      <div class="panel-head"><div class="titles"><h2 id="faq-heading">Questions and answers</h2></div></div>
+      <div class="panel-body prose" id="faq-body"></div>
+    </section>
   </main>
   <footer class="site-footer" id="site-footer"></footer>
 </div>

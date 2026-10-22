@@ -6,6 +6,7 @@ import { splitPaste } from './paste.js';
 import { resultHtml, summaryHtml } from './render.js';
 import { csvText } from './outputs.js';
 import { aboutHtml } from './sections.js';
+import { faqHtml } from './seo.js';
 import { TEXT, OUT } from './text.js';
 import { analyse } from '../shared/result-object.js';
 import { incompleteDeclarations, positiveSpreadEntered } from '../engine/validate.js';
@@ -139,6 +140,7 @@ export function init() {
     bindCopy(footer);
     $('tool-form').innerHTML = formHtml();
     $('about').innerHTML = aboutHtml();
+    $('faq-body').innerHTML = faqHtml();
     for (let i = 0; i < 3; i++)
         addRow();
     form().addEventListener('input', update);

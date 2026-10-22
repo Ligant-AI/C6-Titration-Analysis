@@ -1,7 +1,8 @@
 import { renderHeader as suiteHeader, renderFooter as suiteFooter } from '@ligant/bench-chrome';
 import { CONFIG } from '../config.js';
+import { SEO } from './seo.js';
 export function renderHeader() {
-    return suiteHeader({ path: `/${CONFIG.slug}/`, title: CONFIG.toolTitle, description: CONFIG.tagline });
+    return suiteHeader({ path: `/${CONFIG.slug}/`, title: SEO.h1, description: SEO.lead });
 }
 export function renderFooter() {
     const tail = ` (v${CONFIG.version}) [Computer software]. ${CONFIG.legalEntity}. ${CONFIG.publicBase.replace('https://', '')}${CONFIG.slug}/`;
